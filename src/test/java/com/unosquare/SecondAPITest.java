@@ -1,6 +1,9 @@
 package com.unosquare;
 
 import org.testng.annotations.Test;
+
+import com.apicore.ApiCore;
+
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Reporter;
@@ -10,12 +13,15 @@ import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.given;;
 
 public class SecondAPITest {
+	private ApiCore apiCore;
 	@BeforeMethod
 	public void beforeMethod() {
+		apiCore = new ApiCore();
 	}
 	@Test
 	public void f_Gherkin() {
-		Response response = given().when().get("https://reqres.in/api/unknown/2");
+		String unknownEndpoint = "/unknown/2";
+		Response response = apiCore.GetUnknow(unknownEndpoint);
 		response.then()
 			.assertThat().statusCode(200).assertThat().contentType(ContentType.JSON)
 			.assertThat().body("data.id", equalTo(2))// Assert that "data.id" = 2
