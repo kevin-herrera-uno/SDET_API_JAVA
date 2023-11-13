@@ -2,12 +2,11 @@ package com.apiobjects;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
 import com.github.cliftonlabs.json_simple.Jsonable;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class RegisterObject implements Jsonable {
+public class RegisterBody implements Jsonable {
 
     private String email;
     private String password;
